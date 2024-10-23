@@ -1,0 +1,9 @@
+Halaman sudah sampai portfolio.
+
+kurang :
+1. animasi getaran notifikasi pada button contact me belum berjalan.
+2. ganti tiap gambar banner sesuai projeknya.
+2. lanjut halaman client
+3. .. blog
+4. .. contact 
+5. .. footer

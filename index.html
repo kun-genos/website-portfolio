@@ -1,0 +1,1893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Riky Raharjo</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #65a30d;
+            --accent: #65a30d;
+            --dark: #1A365D;
+            --light: #FAF3E0; /* Putih tulang */
+            --grey: #718096;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        #home, #about {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
+        }
+
+         /* Mengurangi jarak antar section */
+         #about {
+            margin-top: -100px;
+        }
+
+
+        .content-wrapper, .about-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        /* Updated About Section styles */
+        .about-wrapper {
+            gap: 3rem;
+        }
+
+        .text-content, .about-section {
+            flex: 1;
+            min-width: 300px;
+            text-align: left; /* Teks rata kiri */
+        }
+
+        .about-section {
+            flex: 1;
+            min-width: 300px;
+            padding: 2.5rem;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .about-section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-subtitle {
+            color: var(--accent);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .about-title {
+            color: var(--dark);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .about-description {
+            color: var(--grey);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        /* Updated Social Media Icons */
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .social-link i {
+            font-size: 1.2rem;
+            color: #000000; /* Mengubah warna ikon menjadi hitam */
+            transition: all 0.3s ease-in-out;
+        }
+
+        .social-link:hover {
+            transform: scale(1.1);
+            background-color: var(--accent);
+        }
+
+        .social-link:hover i {
+            transform: scale(1.1);
+        } 
+
+        .welcome-text {
+            color: var(--accent);
+            font-size: clamp(1rem, 1.5vw, 1.25rem);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .name {
+            color: var(--primary);
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .profession {
+            color: var(--grey);
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            margin-bottom: 1rem;
+        }
+
+        .profession span {
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .quote {
+            color: var(--grey);
+            font-size: clamp(1rem, 1.5vw, 1.25rem);
+            margin-bottom: 2rem;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        .quote span {
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translate(0, 0); }
+            15%, 45%, 75% { transform: translate(-2px, 0); }
+            30%, 60%, 90% { transform: translate(2px, 0); }
+        }
+
+        .shake-animation {
+            animation: shake 1.2s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        .cta-button {
+            padding: 1rem 2rem;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            background-color: #000;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .image-wrapper {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-image {
+            width: 80%;
+            max-width: 400px;
+            position: relative;
+            z-index: 2;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .circle-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 50%;
+            z-index: 1;
+            opacity: 0.8;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Navbar section */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.8rem 0;
+            background-color: rgba(255, 255, 255, 0.98);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--accent);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link.active {
+            color: var(--accent);
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 0.5rem;
+        }
+
+        .hamburger-line {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: var(--dark);
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* portfolio section */
+        .portfolio-section {
+            background-color: #f8fafc; /* Slightly darker background */
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .portfolio-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.05) 100%);
+            z-index: 1;
+        }
+
+        .portfolio-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .portfolio-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-subtitle {
+            color: var(--accent);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title {
+            color: var(--dark);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .section-description {
+            color: var(--grey);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .portfolio-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-banner {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(101, 163, 13, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover .project-banner {
+            transform: scale(1.05);
+        }
+
+        .overlay-content {
+            text-align: center;
+            color: white;
+        }
+
+        .overlay-content i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            color: var(--dark);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-tag {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .project-description {
+            color: var(--grey);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* client style  */
+        .client-section {
+            background-color: #1a1a1a;
+            padding: 6rem 0;
+            position: relative;
+            color: white;
+        }
+
+        .client-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.2) 100%);
+            z-index: 1;
+        }
+
+        .client-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .client-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .client-section .section-subtitle {
+            color: var(--accent);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .client-section .section-title {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .client-section .section-description {
+            color: #a0aec0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .client-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .client-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .client-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .client-logo {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            filter: grayscale(100%) brightness(1.2);
+            transition: filter 0.3s ease;
+        }
+
+        .client-item:hover .client-logo {
+            filter: grayscale(0%) brightness(1);
+        }
+
+        /* Blog Section Styles */
+        .blog-section {
+            background-color: var(--light);
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .blog-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-image {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-thumbnail {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card:hover .blog-thumbnail {
+            transform: scale(1.05);
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-title {
+            color: var(--dark);
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .blog-excerpt {
+            color: var(--grey);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .read-more {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .read-more:hover {
+            background-color: #000;
+            transform: translateY(-2px);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 1rem;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 1.5rem;
+            top: 1rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--dark);
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-modal:hover {
+            color: var(--accent);
+        }
+
+        .modal-image {
+            width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .modal-text {
+            color: var(--grey);
+            line-height: 1.8;
+        }
+
+        .modal-text p {
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Style */
+        .contact-section {
+            background-color: #1a1a1a;
+            padding: 6rem 0;
+            position: relative;
+            color: white;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.05) 100%);
+            z-index: 1;
+        }
+
+        .contact-section .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-section .section-subtitle {
+            color: var(--accent);
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .contact-section .section-title {
+            color: white;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .contact-section .section-description {
+            color: #a0aec0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0.5rem;
+            color: white;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #a0aec0;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1rem 2rem;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .submit-button:hover {
+            background-color: #4d7c0a;
+            transform: translateY(-2px);
+        }
+
+        .submit-button i {
+            font-size: 1.1rem;
+        }
+
+        /* Add success/error message styles */
+        .form-message {
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        .form-message.success {
+            background-color: rgba(74, 222, 128, 0.2);
+            color: #4ade80;
+        }
+
+        .form-message.error {
+            background-color: rgba(248, 113, 113, 0.2);
+            color: #f87171;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #111111;
+            padding: 5rem 0 2rem;
+            color: white;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-title {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .contact-item i {
+            color: var(--accent);
+            margin-top: 0.25rem;
+        }
+
+        .contact-item a,
+        .contact-item p {
+            color: #a0aec0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #a0aec0;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: inline-block;
+            position: relative;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .footer-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.1);
+            margin: 2rem 0;
+        }
+
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-social .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social .social-link:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            color: #a0aec0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* CV Button Styles */
+        .cv-button {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .cv-button i {
+            font-size: 0.9rem;
+        }
+
+        .cv-button:hover {
+            background-color: transparent;
+            color: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        /* Tambahan untuk animasi download */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+
+        .cv-button:hover i {
+            animation: bounce 0.5s ease infinite;
+        }
+
+        /* Update existing navbar styles untuk mengakomodasi tombol CV */
+        .nav-container {
+            padding: 0 1.5rem;
+        }
+
+        .nav-links {
+            gap: 1.5rem;
+        } 
+
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+
+        /* Styling khusus untuk mobile menu dengan CV button */
+        @media (max-width: 768px) {
+            .nav-links.active {
+                padding-bottom: 1.5rem;
+            }
+
+            .cv-button {
+                width: calc(100% - 2rem);
+                margin: 0.5rem 1rem;
+                justify-content: center;
+                background-color: var(--accent);
+                color: white;
+            }
+
+            .cv-button:hover {
+                background-color: var(--dark);
+                border-color: var(--dark);
+                color: white;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper, .about-wrapper {
+                flex-direction: column;
+                text-align: left; /* Tetap rata kiri di HP */
+                padding-top: 5rem;
+            }
+
+            .text-content {
+                order: 1;
+            }
+
+            .image-wrapper {
+                order: 2;
+                margin-top: 5px;
+                height: 350px;
+            }
+
+            .about-wrapper {
+                flex-direction: column;
+            }
+
+            .quote {
+                margin: 0 auto 2rem auto;
+            }
+            
+            .profile-image {
+                width: 70%;
+            }
+
+            .circle-bg {
+                width: 90%;
+                height: 90%;
+            }
+            .about-section {
+                margin-bottom: 2rem;
+            }
+            #about {
+                margin-top: -50px;
+            }
+            .nav-links {
+                position: fixed;
+                top: -100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                padding: 2rem 0;
+                gap: 1.5rem;
+                transition: all 0.3s ease;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                top: 72px; /* Adjust based on navbar height */
+            }
+
+            .hamburger {
+                display: block;
+                z-index: 100;
+            }
+
+            .hamburger.active .hamburger-line:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .hamburger.active .hamburger-line:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .hamburger-line:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-section {
+                padding: 4rem 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .project-banner {
+                height: 250px;
+            }
+
+            .client-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            padding: 0 1rem;
+            }
+
+            .client-section {
+                padding: 4rem 0;
+            }
+
+            .client-section .section-title {
+                font-size: 2rem;
+            }
+
+            .client-item {
+                padding: 1.5rem;
+            }
+
+            .client-logo {
+                max-width: 120px;
+            }
+
+            .blog-grid {
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            }
+
+            .blog-section {
+                padding: 4rem 0;
+            }
+
+            .modal-content {
+                margin: 10% 5%;
+                padding: 1.5rem;
+            }
+
+            .contact-section {
+                padding: 4rem 0;
+            }
+
+            .contact-section .section-title {
+                font-size: 2rem;
+            }
+
+            .contact-form {
+                padding: 1.5rem;
+            }
+
+            .form-group {
+                margin-bottom: 1rem;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 0.8rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+                padding: 0 1rem;
+            }
+
+            .footer {
+                padding: 3rem 0 2rem;
+            }
+
+            .footer-section {
+                text-align: center;
+            }
+
+            .contact-item {
+                justify-content: center;
+            }
+
+            .footer-links {
+                align-items: center;
+            }
+
+            .nav-links {
+                padding: 1rem 0;
+            }
+
+            .cv-button {
+                margin: 0.5rem 1rem;
+                text-align: center;
+                justify-content: center;
+            }
+        }
+        /* Adjust main content padding to account for fixed navbar */
+        #home {
+            padding-top: 80px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Add Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">
+                Riky<span>Raharjo</span>
+            </a>
+            <button class="hamburger">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+            <div class="nav-links">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About Me</a>
+                <a href="#portfolio" class="nav-link">Portfolio</a>
+                <a href="#client" class="nav-link">Client</a>
+                <a href="#blog" class="nav-link">Blog</a>
+                <a href="#contact" class="nav-link">Contact</a>
+                <a href="dist/documents/CV Riky Raharjo (1).pdf" download class="cv-button">
+                    <i class="fas fa-download"></i> Download CV
+                </a>
+            </div>
+        </div>
+    </nav>
+    <section id="home">
+        <div class="container">
+            <div class="content-wrapper">
+                <div class="text-content" data-aos="fade-right">
+                    <h1 class="welcome-text">Welcome All..! 🙌🏼, I'm</h1>
+                    <div class="name">Riky Raharjo</div>
+                    <h2 class="profession">
+                        Software Developer & 
+                        <span>Content Creator</span>
+                    </h2>
+                    <p class="quote">
+                        "Nothing is instant, even instant noodles have a 
+                        <span>process.</span>"
+                    </p>
+                    <a href="#contact" class="cta-button">Contact Me</a>
+                </div>
+                
+                <div class="image-wrapper" data-aos="fade-left">
+                    <img 
+                        src="dist/img/rikyr.png" 
+                        alt="Riky Raharjo" 
+                        class="profile-image"
+                    >
+                    <div class="circle-bg"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- about section -->
+    <section id="about">
+        <div class="container">
+            <div class="about-wrapper">
+                <div class="about-section" data-aos="fade-right">
+                    <h3 class="about-subtitle">Software Development</h3>
+                    <h1 class="about-title">Tentang Saya</h1>
+                    <p class="about-description">
+                        Saya adalah seorang Software Developer dengan pengalaman lebih dari 3 tahun dalam pengembangan aplikasi web dan mobile. Dengan keahlian dalam berbagai teknologi modern seperti React, Node.js, dan Flutter, saya telah membantu berbagai perusahaan mengembangkan solusi digital yang inovatif dan efisien. Saya percaya bahwa kode yang bersih dan terstruktur adalah kunci untuk membuat aplikasi yang mudah dikelola dan dikembangkan.
+                    </p>
+                </div>
+                <div class="about-section" data-aos="fade-left">
+                    <h3 class="about-subtitle">My Expertise</h3>
+                    <h1 class="about-title">Hal Yang Saya Lakukan</h1>
+                    <p class="about-description">
+                        Sebagai Software Developer, saya fokus pada pengembangan aplikasi yang scalable dan user-friendly. Saya menangani seluruh siklus pengembangan software, mulai dari analisis kebutuhan, perancangan arsitektur, implementasi, hingga deployment dan maintenance. Saya juga aktif dalam mengikuti perkembangan teknologi terbaru dan selalu berusaha menerapkan best practices dalam setiap project.
+                    </p>
+                    <!-- Update bagian social links -->
+                    <div class="social-links">
+                        <a href="https://github.com/kun-genos" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/riky-raharjo-816b5023a/" class="social-link">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://www.instagram.com/_rraharjo/" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End about section -->
+
+    <!-- Start Porfolio Section -->
+    <section id="portfolio" class="portfolio-section">
+        <div class="container">
+            <div class="portfolio-header" data-aos="fade-up">
+                <h3 class="section-subtitle">Portfolio</h3>
+                <h1 class="section-title">Portfolio Terbaru</h1>
+                <p class="section-description">
+                    Berikut adalah beberapa proyek terbaik yang telah saya kerjakan dalam pengembangan aplikasi web dan mobile. 
+                    Setiap proyek mencerminkan komitmen saya terhadap kualitas, inovasi, dan solusi yang efektif untuk kebutuhan klien.
+                </p>
+            </div>
+    
+            <div class="portfolio-grid">
+                <!-- Project 1 - MonMan -->
+                <div class="portfolio-item" data-aos="fade-up">
+                    <div class="portfolio-image">
+                        <img src="dist/img/banner.png" alt="MonMan App" class="project-banner">
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <i class="fas fa-eye"></i>
+                                <span>View Project</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="project-title">MonMan - Money Management App</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Flutter</span>
+                            <span class="tech-tag">SQLite</span>
+                        </div>
+                        <p class="project-description">
+                            Aplikasi mobile untuk manajemen dan tracking keuangan personal. Dibangun dengan Flutter dan SQLite, 
+                            MonMan menyediakan interface yang intuitif untuk mencatat pemasukan, pengeluaran, dan menganalisis 
+                            pola keuangan pengguna.
+                        </p>
+                    </div>
+                </div>
+    
+                <!-- Project 2 - Rawuh-go Web -->
+                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="100">
+                    <div class="portfolio-image">
+                        <img src="dist/img/banner.png" alt="Rawuh-go Web" class="project-banner">
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <i class="fas fa-eye"></i>
+                                <span>View Project</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="project-title">Rawuh-go - Presensi System</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Laravel</span>
+                            <span class="tech-tag">Filament</span>
+                            <span class="tech-tag">Livewire</span>
+                            <span class="tech-tag">MySQL</span>
+                        </div>
+                        <p class="project-description">
+                            Sistem presensi modern berbasis web dengan fitur geolokasi dan face recognition. 
+                            Menggunakan Laravel Filament dan Livewire untuk memberikan pengalaman real-time yang 
+                            responsif dan aman.
+                        </p>
+                    </div>
+                </div>
+    
+                <!-- Project 3 - Batik Trusmi -->
+                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="200">
+                    <div class="portfolio-image">
+                        <img src="dist/img/banner.png" alt="Batik Trusmi E-commerce" class="project-banner">
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <i class="fas fa-eye"></i>
+                                <span>View Project</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="project-title">Batik Trusmi E-commerce</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Flutter</span>
+                            <span class="tech-tag">Firebase</span>
+                            <span class="tech-tag">Laravel</span>
+                        </div>
+                        <p class="project-description">
+                            Aplikasi e-commerce fullstack untuk penjualan Batik Trusmi. Mengintegrasikan Flutter untuk 
+                            frontend mobile, Firebase untuk realtime features, dan Laravel sebagai backend yang powerful.
+                        </p>
+                    </div>
+                </div>
+    
+                <!-- Project 4 - Rawuh-go Mobile -->
+                <div class="portfolio-item" data-aos="fade-up" data-aos-delay="300">
+                    <div class="portfolio-image">
+                        <img src="dist/img/banner.png" alt="Rawuh-go Mobile" class="project-banner">
+                        <div class="portfolio-overlay">
+                            <div class="overlay-content">
+                                <i class="fas fa-eye"></i>
+                                <span>View Project</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3 class="project-title">Rawuh-go Mobile</h3>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Flutter</span>
+                            <span class="tech-tag">Laravel API</span>
+                        </div>
+                        <p class="project-description">
+                            Versi mobile dari sistem presensi Rawuh-go. Memberikan kemudahan akses untuk melakukan 
+                            presensi melalui smartphone dengan interface yang user-friendly dan performa tinggi.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Porfolio Section -->
+
+    <!-- Start Client Section -->
+    <!-- Tambahkan kode ini setelah section portfolio -->
+    <section id="client" class="client-section">
+        <div class="container">
+            <div class="client-header" data-aos="fade-up">
+                <h3 class="section-subtitle">Client</h3>
+                <h1 class="section-title">Yang Pernah Bekerja sama</h1>
+                <p class="section-description">
+                    Saya telah berkolaborasi dengan berbagai perusahaan dan organisasi dalam mengembangkan solusi digital yang inovatif. 
+                    Setiap kolaborasi membawa pengalaman berharga dan hasil yang memuaskan bagi kedua belah pihak.
+                </p>
+            </div>
+
+            <div class="client-grid" data-aos="fade-up" data-aos-delay="100">
+                <div class="client-item">
+                    <img src="dist/img/git_solution.png" alt="Client 1" class="client-logo">
+                </div>
+                <div class="client-item">
+                    <img src="dist/img/google.png" alt="Client 2" class="client-logo">
+                </div>
+                <div class="client-item">
+                    <img src="dist/img/git_solution.png" alt="Client 3" class="client-logo">
+                </div>
+                <div class="client-item">
+                    <img src="dist/img/google.png" alt="Client 4" class="client-logo">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End CLient Section -->
+
+    <!-- Start Blog Section -->
+    <section id="blog" class="blog-section">
+        <div class="container">
+            <div class="blog-header" data-aos="fade-up">
+                <h3 class="section-subtitle">Blog</h3>
+                <h1 class="section-title">Tulisan Terkini</h1>
+                <p class="section-description">
+                    Berbagi pengetahuan dan pengalaman dalam dunia pengembangan web dan mobile melalui tulisan.
+                    Di sini saya menuangkan insight, tips, dan pembelajaran yang saya dapatkan selama berkarir di bidang teknologi.
+                </p>
+            </div>
+    
+            <div class="blog-grid">
+                <!-- Blog Post 1 -->
+                <div class="blog-card" data-aos="fade-up">
+                    <div class="blog-image">
+                        <img src="dist/img/blog.png" alt="Blog 1" class="blog-thumbnail">
+                    </div>
+                    <div class="blog-content">
+                        <h3 class="blog-title">Tips Optimasi Performa Web</h3>
+                        <p class="blog-excerpt">
+                            Pelajari cara meningkatkan performa website Anda dengan teknik optimasi modern. 
+                            Dari lazy loading hingga code splitting, temukan cara terbaik untuk membuat website Anda lebih cepat.
+                        </p>
+                        <button class="read-more" onclick="openModal('modal1')">Lihat Selengkapnya</button>
+                    </div>
+                </div>
+    
+                <!-- Blog Post 2 -->
+                <div class="blog-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="blog-image">
+                        <img src="dist/img/blog.png" alt="Blog 2" class="blog-thumbnail">
+                    </div>
+                    <div class="blog-content">
+                        <h3 class="blog-title">Flutter vs React Native</h3>
+                        <p class="blog-excerpt">
+                            Membandingkan dua framework mobile development populer. 
+                            Analisis mendalam tentang kelebihan dan kekurangan masing-masing untuk berbagai kebutuhan pengembangan.
+                        </p>
+                        <button class="read-more" onclick="openModal('modal2')">Lihat Selengkapnya</button>
+                    </div>
+                </div>
+    
+                <!-- Blog Post 3 -->
+                <div class="blog-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="blog-image">
+                        <img src="dist/img/blog.png" alt="Blog 3" class="blog-thumbnail">
+                    </div>
+                    <div class="blog-content">
+                        <h3 class="blog-title">Clean Code dalam Laravel</h3>
+                        <p class="blog-excerpt">
+                            Panduan praktis menerapkan prinsip clean code dalam pengembangan aplikasi Laravel.
+                            Belajar membuat kode yang mudah dibaca, dikelola, dan di-maintenance.
+                        </p>
+                        <button class="read-more" onclick="openModal('modal3')">Lihat Selengkapnya</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Modal Popups -->
+        <div id="modal1" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal('modal1')">&times;</span>
+                <h2>Tips Optimasi Performa Web</h2>
+                <img src="dist/img/blog.png" alt="Blog 1 Full" class="modal-image">
+                <div class="modal-text">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+            </div>
+        </div>
+    
+        <div id="modal2" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal('modal2')">&times;</span>
+                <h2>Flutter vs React Native</h2>
+                <img src="dist/img/blog.png" alt="Blog 2 Full" class="modal-image">
+                <div class="modal-text">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+            </div>
+        </div>
+    
+        <div id="modal3" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal('modal3')">&times;</span>
+                <h2>Clean Code dalam Laravel</h2>
+                <img src="dist/img/blog.png" alt="Blog 3 Full" class="modal-image">
+                <div class="modal-text">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Blog Section -->
+
+    <!-- Start Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="contact-header" data-aos="fade-up">
+                <h3 class="section-subtitle">Contact</h3>
+                <h1 class="section-title">Hubungi Saya</h1>
+                <p class="section-description">
+                    Tertarik untuk berkolaborasi atau memiliki project yang ingin didiskusikan? 
+                    Jangan ragu untuk menghubungi saya. Mari wujudkan ide Anda menjadi realitas digital yang luar biasa.
+                </p>
+            </div>
+    
+            <div class="contact-form-container" data-aos="fade-up" data-aos-delay="100">
+                <form id="contactForm" class="contact-form" action="mailto:rikyraharjo18@gmail.com" method="POST" enctype="text/plain">
+                    <div class="form-group">
+                        <label for="name">Nama</label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            required 
+                            placeholder="Masukkan nama lengkap"
+                        >
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            required 
+                            placeholder="Masukkan alamat email"
+                        >
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="message">Pesan</label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            required 
+                            placeholder="Tuliskan pesan Anda"
+                            rows="5"
+                        ></textarea>
+                    </div>
+    
+                    <button type="submit" class="submit-button">
+                        <i class="fas fa-paper-plane"></i>
+                        Kirim Pesan
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- End Contact Section -->
+
+    <!-- Start Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Kolom 1: Info Kontak -->
+                <div class="footer-section">
+                    <h2 class="footer-title">Riky Raharjo</h2>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:rikyraharjo112@gmail.com">rikyraharjo112@gmail.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>Jln karang turi Cimohong,<br>Brebes, Jawa Tengah, Indonesia</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Kolom 2: Kategori -->
+                <div class="footer-section">
+                    <h2 class="footer-title">Kategori</h2>
+                    <ul class="footer-links">
+                        <li><a href="#blog">Programming</a></li>
+                        <li><a href="#blog">Teknologi</a></li>
+                        <li><a href="#blog">Vlog</a></li>
+                    </ul>
+                </div>
+    
+                <!-- Kolom 3: Menu -->
+                <div class="footer-section">
+                    <h2 class="footer-title">Menu</h2>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Me</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#client">Client</a></li>
+                        <li><a href="#blog">Blog</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+    
+            <div class="footer-divider"></div>
+    
+            <div class="footer-bottom">
+                <!-- Social Media Links -->
+                <div class="footer-social">
+                    <a href="https://github.com/kun-genos" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/riky-raharjo-816b5023a/" class="social-link">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://www.instagram.com/_rraharjo/" class="social-link">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+                
+                <!-- Copyright -->
+                <div class="copyright">
+                    <p>Dibuat oleh Riky Raharjo, 2024</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Footer -->
+
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        const navLinksItems = document.querySelectorAll('.nav-link');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking a link
+        navLinksItems.forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Active link highlight
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href').slice(1) === current) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        gsap.from(".welcome-text", {
+            opacity: 0,
+            y: 30,
+            duration: 1
+        });
+
+        gsap.from(".name", {
+            opacity: 0,
+            y: 30,
+            duration: 1,
+            delay: 0.2
+        });
+
+        gsap.from(".profession", {
+            opacity: 0,
+            y: 30,
+            duration: 1,
+            delay: 0.4
+        });
+
+        gsap.from(".quote", {
+            opacity: 0,
+            y: 30,
+            duration: 1,
+            delay: 0.6
+        });
+    </script>
+    <script>
+        // Shake animation for contact button
+        function addShakeAnimation() {
+            const contactButton = document.querySelector('.cta-button');
+            contactButton.classList.add('shake-animation');
+        
+            // Remove animation class after it completes
+            setTimeout(() => {
+                contactButton.classList.remove('shake-animation');
+            }, 1200); // Menyesuaikan dengan durasi animasi
+        }
+        
+        // Trigger shake animation every 3 seconds
+        setInterval(addShakeAnimation, 3000);
+        
+        // Add immediate shake when page loads
+        setTimeout(addShakeAnimation, 2000);
+    </script>
+    <script>
+        function openModal(modalId) {
+        document.getElementById(modalId).style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside of modal content
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        }
+    </script>
+    <script>
+        // Form handling
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Create mail body
+            const mailBody = `Name: ${name}%0D%0AEmail: ${email}%0D%0AMessage: ${message}`;
+            
+            // Open default mail client
+            window.location.href = `mailto:rikyraharjo18@gmail.com?subject=Contact Form Submission&body=${mailBody}`;
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Show success message (optional)
+            showFormMessage('Pesan berhasil dikirim!', 'success');
+        });
+        
+        function showFormMessage(message, type) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `form-message ${type}`;
+            messageDiv.textContent = message;
+            
+            contactForm.appendChild(messageDiv);
+            
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
